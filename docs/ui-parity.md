@@ -1,6 +1,6 @@
 # UI parity
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-22 · **Change:** minor (on macOS the grid is drawn at Excel for Mac's density: a point per pixel, 72-dpi column widths; Esc and Enter close a data validation alert over the cell editor; Ctrl+Enter fill gives each cell the automatic number format typing gives it; keytip letters typed with Alt held, #1846; Number Stored as Text indicator and Convert to Number) · **Target:** Microsoft Excel (Microsoft 365), Excel for Mac 16.113.4
+> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-22 · **Change:** minor (a General number fits as many digits as its column has characters; on macOS the grid is drawn at Excel for Mac's density: a point per pixel, 72-dpi column widths; Esc and Enter close a data validation alert over the cell editor; Ctrl+Enter fill gives each cell the automatic number format typing gives it; keytip letters typed with Alt held, #1846; Number Stored as Text indicator and Convert to Number) · **Target:** Microsoft Excel (Microsoft 365), Excel for Mac 16.113.4
 
 Interaction, controls and feel, against Excel. Part of [target-app-parity.md](target-app-parity.md).
 **UI/UX fidelity: ~55% ready, 50–80 h** (estimated). Ribbon command coverage is measured
@@ -176,6 +176,7 @@ scrollbar bugs 2–4 · pixel/feel pass against observed Excel 7–12.
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-22 | minor | A General number fits as many digits as its column has characters, as in Excel: digits are counted in the font's hinted maximum digit width (7 px for Calibri 11) after 5 px of padding, so 24959397 shows in full in a default 8.43-character column instead of `2.5E+07` (the drawn Carlito digits are 7.43 px wide; a number that fits that way may use the cell padding instead of turning into ####). A 10-digit number still narrows to `1.23E+09`. Printing and PDF export count the same way |
 | 2026-10-22 | minor | On macOS the grid is drawn at Excel for Mac's density: a point per pixel for text and rows (a 15 pt row is 15 px at 100%) and column widths counted in the Normal font's digit width at 72 dpi (6 px for Calibri 11 and 12). Measured column edges match Excel for Mac within 1 px for set widths; default-width columns are up to 2 px wider. Windows, Linux and the web keep the desktop density; Page Layout view is unchanged |
 | 2026-10-21 | minor | Background error checking, first part (#1994): a constant whose text would be a number if typed (signs, thousands, currency, percent, exponent, parenthesised negative) gets Excel's green corner triangle; the active cell then shows a warning button whose menu names the problem and offers Convert to Number for the selection (`formulas.convertToNumber`). Dates, times and fractions kept as text and formula results are not flagged, as in Excel |
 | 2026-10-21 | minor | Paste Special laid out as Excel's: Paste and Operation options each in two columns inside a frame, Skip blanks and Transpose side by side, Paste Link as a button that pastes references at once; labels translated (the generic form didn't translate them) and the window no longer runs past the screen |
